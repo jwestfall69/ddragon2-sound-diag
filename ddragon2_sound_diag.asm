@@ -1,4 +1,4 @@
-	include "ddragon2.inc"
+	include "ddragon2_sound.inc"
 	include "error_addresses.inc"
 	include "macros.inc"
 

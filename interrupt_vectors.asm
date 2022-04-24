@@ -1,4 +1,4 @@
-	include "ddragon2.inc"
+	include "ddragon2_sound.inc"
 
 	section vectors,"rodata"
 

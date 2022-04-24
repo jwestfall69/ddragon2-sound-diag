@@ -6,7 +6,7 @@ OBJS = obj/ddragon2_sound_diag.o \
        obj/ram_tests.o \
        obj/ym2151_tests.o
 
-INC = include/ddragon2.inc include/error_addresses.inc include/macros.inc
+INC = include/ddragon2_sound.inc include/error_addresses.inc include/macros.inc
 
 VASM = vasmz80_oldstyle
 VASM_FLAGS = -Fvobj -chklabels -Iinclude -quiet

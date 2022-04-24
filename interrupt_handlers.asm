@@ -1,4 +1,4 @@
-	include "ddragon2.inc"
+	include "ddragon2_sound.inc"
 
 	global handle_irq
 	global handle_nmi

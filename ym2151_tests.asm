@@ -1,4 +1,4 @@
-	include "ddragon2.inc"
+	include "ddragon2_sound.inc"
 	include "macros.inc"
 
 	global ym2151_oe_test
