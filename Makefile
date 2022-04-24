@@ -1,9 +1,11 @@
 OBJS = obj/ddragon2_sound_diag.o \
        obj/error_addresses.o \
        obj/interrupt_handlers.o \
-       obj/interrupt_vectors.o
+       obj/interrupt_vectors.o \
+       obj/psub.o \
+       obj/ram_tests.o
 
-INC = include/ddragon2.inc
+INC = include/ddragon2.inc include/error_addresses.inc
 
 VASM = vasmz80_oldstyle
 VASM_FLAGS = -Fvobj -chklabels -Iinclude -quiet
