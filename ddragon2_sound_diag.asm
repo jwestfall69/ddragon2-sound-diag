@@ -1,4 +1,5 @@
 	include "ddragon2_sound.inc"
+	include "ddragon2_sound_diag.inc"
 	include "error_addresses.inc"
 	include "macros.inc"
 
@@ -9,6 +10,7 @@
 _start:
 
 		di
+		im	1
 
 		ld	a,(MMIO_MAIN_CPU_LATCH)
 
@@ -32,5 +34,8 @@ _start:
 
 		call	ym2151_busy_bit_test
 		jp	nz, EA_YM2151_ALREADY_BUSY
+
+		call	ym2151_unexpected_irq_test
+		jp	nz, EA_UNEXPECTED_IRQ
 
 		jp	EA_ALL_PASSED

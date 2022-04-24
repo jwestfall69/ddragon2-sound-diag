@@ -1,4 +1,5 @@
 	include "ddragon2_sound.inc"
+	include "ddragon2_sound_diag.inc"
 	include "macros.inc"
 
 	global ym2151_oe_test
@@ -45,7 +46,6 @@ ym2151_busy_bit_test:
 		ld	hl, MMIO_YM2151_DATA
 		ld	a,(hl)
 
-		STALL
 		and	YM2151_BUSY_BIT
 		jr	nz, .test_failed
 		xor	a
@@ -56,8 +56,32 @@ ym2151_busy_bit_test:
 		inc	a
 		ret
 
+; We have not yet enabled ym2151 timer so we
+; shouldn't be getting any interrupts from it
 ym2151_unexpected_irq_test:
+
+		ld	hl, $0
+		ld	(g_irq_count), hl
+
+		ei
+
+		ld	bc, $ffff
+		call	delay
+
+		di
+
+		ld	hl, (g_irq_count)
+		ld	bc, $0
+		sbc	hl, bc
+
+		jr	nz, .test_failed
+
 		xor	a
+		ret
+
+	.test_failed:
+		xor	a
+		inc	a
 		ret
 
 ym2151_timera_test:

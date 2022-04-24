@@ -4,6 +4,7 @@ OBJS = obj/ddragon2_sound_diag.o \
        obj/interrupt_vectors.o \
        obj/psub.o \
        obj/ram_tests.o \
+       obj/util.o \
        obj/ym2151_tests.o
 
 INC = include/ddragon2_sound.inc include/error_addresses.inc include/macros.inc
