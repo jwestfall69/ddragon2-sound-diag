@@ -27,5 +27,10 @@ _start:
 		; ram seems good, init stack
 		ld	sp, RAM_START + RAM_SIZE - 2
 
+		call	ym2151_oe_test
+		jp	nz, EA_YM2151_DEAD_OUTPUT
+
+		call	ym2151_busy_bit_test
+		jp	nz, EA_YM2151_ALREADY_BUSY
 
 		jp	EA_ALL_PASSED
