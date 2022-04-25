@@ -7,7 +7,10 @@ OBJS = obj/ddragon2_sound_diag.o \
        obj/util.o \
        obj/ym2151_tests.o
 
-INC = include/ddragon2_sound.inc include/error_addresses.inc include/macros.inc
+INC = include/ddragon2_sound.inc \
+      include/ddragon2_sound_diag.inc \
+      include/error_addresses.inc \
+      include/macros.inc
 
 VASM = vasmz80_oldstyle
 VASM_FLAGS = -Fvobj -chklabels -Iinclude -quiet
@@ -22,7 +25,7 @@ $(OUTPUT_DIR)/ddragon2-sound-diag.bin: $(OBJ_DIR) $(OUTPUT_DIR) $(OBJS) $(INC)
 	@echo
 	@ls -l $(OUTPUT_DIR)/ddragon2-sound-diag.bin
 
-$(OBJ_DIR)/%.o: %.asm $(INCS)
+$(OBJ_DIR)/%.o: %.asm $(INC)
 	$(VASM) $(VASM_FLAGS) -o $@ $<
 
 $(OUTPUT_DIR):
