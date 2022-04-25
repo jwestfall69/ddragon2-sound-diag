@@ -8,11 +8,20 @@
 
 ; interrupt from ym2151 timer
 handle_irq:
+		ex	af, af'
 		exx
-		ld	hl, (g_irq_count)
-		inc	hl
-		ld	(g_irq_count), hl
+
+		ld	a, $1
+		ld	(g_irq_seen), a
+
+		; reset timer
+		ld	bc, YM2151_REG_TIMER << 8 | $3a
+		call	ym2151_write_register
+
 		exx
+		ex	af, af'
+
+		ei
 		reti
 
 handle_nmi:

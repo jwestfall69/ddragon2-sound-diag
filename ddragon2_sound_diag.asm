@@ -38,4 +38,7 @@ _start:
 		call	ym2151_unexpected_irq_test
 		jp	nz, EA_UNEXPECTED_IRQ
 
+		call	ym2151_timerb_test
+		jp	nz, EA_YM2151_TIMERB
+
 		jp	EA_ALL_PASSED

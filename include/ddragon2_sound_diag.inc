@@ -1,3 +1,2 @@
 ; global vars
-g_irq_count	equ	$8000
-g_irq_expected	equ	$8002
+g_irq_seen	equ	$8000
