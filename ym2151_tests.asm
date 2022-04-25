@@ -11,8 +11,8 @@
 	section text
 
 ym2151_oe_test:
-		ld	hl, MMIO_YM2151_ADDRESS
-		ld	de, MMIO_YM2151_ADDRESS
+		ld	hl, MMIO_YM2151_DATA
+		ld	de, MMIO_YM2151_DATA
 
 	; When memory doesn't output anything on a read it usually results in the target
 	; register, 'a' for us, containing the opcode of the ld.  Its not 100% and
