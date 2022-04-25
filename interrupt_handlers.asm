@@ -8,7 +8,7 @@
 
 ; interrupt from ym2151 timer
 handle_irq:
-		ex	af, af'
+		push	af
 		exx
 
 		ld	a, $1
@@ -19,8 +19,7 @@ handle_irq:
 		call	ym2151_write_register
 
 		exx
-		ex	af, af'
-
+		pop	af
 		ei
 		reti
 
