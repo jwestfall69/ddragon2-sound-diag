@@ -21,13 +21,31 @@ oki6295_playing_test:
 		inc	a
 		ret
 
+; Information about the start/stop addresses of sound
+; samples are stored in array of data at the start of
+; the ADPCM rom space.  The array consists of 128 of
+; the following struct;
+; struct phrase {
+;   uint8_t start_addr[3];
+;   uint8_t end_addr[3];
+;   uint8_t pad[2]; // 0 filled
+; }
+; The oki6295 doesn't allow the use of phrase 0, so
+; this allows for 127 different adpcm sounds.
+;
+; When wanting to play a sound you need to send 2 bytes
+; to the oki6295 MMIO address.
+;  byte 1 = OKI6295_PHRASE_SEL_BIT | phrase #
+;  delay
+;  byte 2 = channel bit << 4 | volume reduction value
+;
 ; tell the oki6295 to play something and
 ; verify it says its playing
 oki6295_play_test:
-		ld	a, $82
+		ld	a, OKI6295_PHRASE_SEL_BIT | $2
 		call	oki6295_write_byte
 
-		ld	a, $80
+		ld	a, OKI6295_CHANNEL4 << 4
 		call	oki6295_write_byte
 
 		ld	a, (MMIO_OKI6295)
