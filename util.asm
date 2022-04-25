@@ -3,6 +3,7 @@
 	include "macros.inc"
 
 	global delay
+	global oki6295_write_byte
 	global ym2151_write_register
 	global ym2151_not_busy
 
@@ -21,6 +22,18 @@ delay:
 		jr	nz, .delay_loop	; 12 cycles
 
 		pop	af
+		ret
+
+; a = byte
+oki6295_write_byte:
+		ld	(MMIO_OKI6295), a
+
+	; this delay mimics what the ddragon2 sound code does
+		ld	a, $64
+	.loop_delay:
+		dec	a
+		jr	nz, .loop_delay
+
 		ret
 
 ; b = register

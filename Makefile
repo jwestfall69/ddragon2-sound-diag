@@ -2,6 +2,7 @@ OBJS = obj/ddragon2_sound_diag.o \
        obj/error_addresses.o \
        obj/interrupt_handlers.o \
        obj/interrupt_vectors.o \
+       obj/oki6295.o \
        obj/psub.o \
        obj/ram_tests.o \
        obj/util.o \
