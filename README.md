@@ -19,7 +19,7 @@ Please refer to the [error addresses](docs/error_addresses.md) docs for more inf
 Copy ddragon2-sound-diag.bin over 26ad-0.bin rom file in ddragon2, and fire up ddragon2.
 
 #### Hardware
-Burn the ddragon2-sound-diag.bin to a 27C256 or a 27c512 (if you double it up). Install the eprom into IC41.  You will also want to have the 2x ADPCM roms install or the OKI6295 play test will fail.
+Burn the ddragon2-sound-diag.bin to a 27C256 or a 27c512 (if you double it up). Install the eprom into IC41.  You will also want to have the 2x ADPCM roms installed or the OKI6295 play test will fail.
 
 ## Pre-Built
 You can grab the latest build from the main branch at
