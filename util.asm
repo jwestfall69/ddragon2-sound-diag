@@ -5,7 +5,6 @@
 	global delay
 	global oki6295_write_byte
 	global ym2151_write_register
-	global ym2151_not_busy
 	global psub_enter
 	global psub_exit
 
