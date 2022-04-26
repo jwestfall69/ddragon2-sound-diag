@@ -5,7 +5,7 @@
 ; is restricted to 0x6000 to 0x7ffff which forces the upper 3 address lines
 ; to be 011.  This will leave us 5 bits for possible error addresses
 
-EA_ALL_PASSED			equ $7a00
+EA_ALL_TESTS_PASSED		equ $7a00
 
 EA_RAM_ADDRESS			equ $6100
 EA_RAM_DATA			equ $6200

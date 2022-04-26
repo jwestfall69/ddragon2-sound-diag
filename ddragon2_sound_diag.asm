@@ -47,4 +47,4 @@ _start:
 		call	oki6295_play_test
 		jp	nz, EA_OKI6295_NO_PLAY
 
-		jp	EA_ALL_PASSED
+		jp	EA_ALL_TESTS_PASSED
