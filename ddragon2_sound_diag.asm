@@ -27,6 +27,9 @@ _start:
 		; ram seems good, init stack
 		ld	sp, RAM_START + RAM_SIZE - 2
 
+		call	main_cpu_latch_oe_test
+		jp	nz, EA_MAIN_CPU_LATCH_DEAD_OUTPUT
+
 		call	ym2151_oe_test
 		jp	nz, EA_YM2151_DEAD_OUTPUT
 

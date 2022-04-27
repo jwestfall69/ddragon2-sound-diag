@@ -1,0 +1,13 @@
+	include "ddragon2_sound.inc"
+	include "ddragon2_sound_diag.inc"
+	include "macros.inc"
+
+	global main_cpu_latch_oe_test
+
+	section text
+
+main_cpu_latch_oe_test:
+		ld	hl, MMIO_MAIN_CPU_LATCH
+		call	memory_oe_test
+		ret
+
