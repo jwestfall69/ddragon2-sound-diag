@@ -39,6 +39,9 @@ _start:
 		call	ym2151_timerb_test
 		jp	nz, EA_YM2151_TIMERB
 
+		call	oki6295_oe_test
+		jp	nz, EA_OKI6295_DEAD_OUTPUT
+
 		call	oki6295_playing_test
 		jp	nz, EA_OKI6295_ALREADY_PLAYING
 

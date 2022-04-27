@@ -1,10 +1,16 @@
 	include "ddragon2_sound.inc"
 	include "macros.inc"
 
+	global oki6295_oe_test
 	global oki6295_playing_test
 	global oki6295_play_test
 
 	section text
+
+oki6295_oe_test:
+		ld	hl, MMIO_OKI6295
+		call	memory_oe_test
+		ret
 
 ; we haven't told the oki6295 to play anything
 ; so sound channels should be inactive

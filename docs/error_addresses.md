@@ -19,4 +19,5 @@ Address lines that are pulsing should be considered a 1, while address lines tha
 | 6800 | 0110 1000 0xxx xxxx | EA_YM2151_DEAD_OUTPUT |
 | 6900 | 0110 1001 0xxx xxxx | EA_OKI6295_ALREADY_PLAYING |
 | 6a00 | 0110 1010 0xxx xxxx | EA_OKI6295_NO_PLAY |
-| 6b00 | 0110 1011 0xxx xxxx | EA_UNEXPECTED_IRQ |
+| 6b00 | 0110 1011 0xxx xxxx | EA_OKI6295_DEAD_OUTPUT |
+| 6f00 | 0110 1111 0xxx xxxx | EA_UNEXPECTED_IRQ |
