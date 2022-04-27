@@ -3,6 +3,7 @@
 	include "macros.inc"
 
 	global delay
+	global memory_oe_test
 	global oki6295_write_byte
 	global ym2151_write_register
 	global psub_enter
@@ -23,6 +24,40 @@ delay:
 		jr	nz, .delay_loop	; 12 cycles
 
 		pop	af
+		ret
+
+; When a memory address doesn't output anything on a read request it will
+; usually result in the target register being filled with the opcode for
+; the ld.  Its not 100% and will sometimes results in the register filled
+; with $ff or other garbage.  So we we loop $64 times trying to catch
+; 2 different opcodes being placed into 'a' in a row.
+; params:
+;  hl = memory location to test
+; returns:
+;  Z = 0 (error), 1 = (pass)
+memory_oe_test:
+		ld	d,h
+		ld	e,l
+
+		ld	b, $64
+	.loop_next:
+		ld	a, (hl)
+		cp	$7e		; ld a, (hl) opcode
+		jr	nz, .loop_pass
+
+		ld	a, (de)
+		cp	$1a		; ld a, (de) opcode
+		jr	z, .test_failed
+
+	.loop_pass:
+		djnz	.loop_next
+
+		xor	a
+		ret
+
+	.test_failed:
+		xor	a
+		inc	a
 		ret
 
 ; a = byte
