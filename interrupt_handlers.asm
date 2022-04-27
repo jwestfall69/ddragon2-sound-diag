@@ -23,5 +23,10 @@ handle_irq:
 		ei
 		reti
 
+; If the user has the game rom installed in the main cpu its going to be
+; generating nmi's to play sounds.  Best we can really do is jump to our
+; _start and never ack or return from the nmi.  This should ignore any
+; additional nmi's and allow us to complete testing and remain at the
+; error address.
 handle_nmi:
-		reti
+		jp	_start

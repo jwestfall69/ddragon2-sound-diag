@@ -12,8 +12,6 @@ _start:
 		di
 		im	1
 
-		ld	a,(MMIO_MAIN_CPU_LATCH)
-
 		PSUB	ram_oe_test
 		jp	nz, EA_RAM_DEAD_OUTPUT
 
