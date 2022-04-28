@@ -1,12 +1,12 @@
         macro PSUB
                 ld	hl, \1_psub
                 ld	de, .\@
-                rst	RST_PSUB_ENTER
+                jp	psub_enter
 .\@:
         endm
 
         macro PSUB_RETURN
-                rst	RST_PSUB_EXIT
+                jp	psub_exit
         endm
 
 	macro STALL
