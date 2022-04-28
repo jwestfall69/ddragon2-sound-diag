@@ -7,7 +7,7 @@
 	section text
 
 main_cpu_latch_oe_test:
-		ld	hl, MMIO_MAIN_CPU_LATCH
-		call	memory_oe_test
+		ld	bc, MMIO_MAIN_CPU_LATCH
+		PSUB	memory_oe_test
 		ret
 

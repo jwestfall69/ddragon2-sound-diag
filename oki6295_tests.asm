@@ -8,8 +8,8 @@
 	section text
 
 oki6295_oe_test:
-		ld	hl, MMIO_OKI6295
-		call	memory_oe_test
+		ld	bc, MMIO_OKI6295
+		PSUB	memory_oe_test
 		ret
 
 ; we haven't told the oki6295 to play anything

@@ -13,34 +13,10 @@
 ;  Z = 0 (error), 1 = (pass)
 ;  a = error code or 0 if passed
 ram_oe_test_psub:
-		ld	hl, RAM_START
-		ld	de, RAM_START
+		ld	bc, RAM_START
 
-	; When ram doesn't output anything on a read it usually results in the target
-	; register, 'a' for us, containing the opcode of the ld.  Its not 100% and
-	; will sometimes have $ff or other garbage, so we loop $64 times trying to
-	; catch 2 in a row with different ld opcodes
-		ld	b, $64
-	.loop_next:
-		ld	a, (hl)
-		cp	$7e		; ld a, (hl) opcode
-		jr	nz, .loop_pass
-
-		ld	a, (de)
-		cp	$1a		; ld a, (de) opcode
-		jr	z, .test_failed
-
-	.loop_pass:
-		djnz	.loop_next
-
-		xor	a
-		PSUB_RETURN
-
-	.test_failed:
-		xor	a
-		inc	a
-		PSUB_RETURN
-
+		; jump directly so it handles the PSUB_RETURN
+		jp	memory_oe_test_psub
 ; returns:
 ;  Z = 0 (error), 1 = (pass)
 ;  a = error code or 0 if passed

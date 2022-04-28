@@ -11,8 +11,8 @@
 	section text
 
 ym2151_oe_test:
-		ld	hl, MMIO_YM2151_DATA
-		call	memory_oe_test
+		ld	bc, MMIO_YM2151_DATA
+		PSUB	memory_oe_test
 		ret
 
 ; we haven't done anything with the ym2151, so the

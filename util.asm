@@ -3,7 +3,7 @@
 	include "macros.inc"
 
 	global delay
-	global memory_oe_test
+	global memory_oe_test_psub
 	global oki6295_write_byte
 	global ym2151_write_register
 	global psub_enter
@@ -32,12 +32,14 @@ delay:
 ; with $ff or other garbage.  So we we loop $64 times trying to catch
 ; 2 different opcodes being placed into 'a' in a row.
 ; params:
-;  hl = memory location to test
+;  bc = memory location to test
 ; returns:
 ;  Z = 0 (error), 1 = (pass)
-memory_oe_test:
-		ld	d,h
-		ld	e,l
+memory_oe_test_psub:
+		ld	d,b
+		ld	h,b
+		ld	e,c
+		ld	l,c
 
 		ld	b, $64
 	.loop_next:
@@ -53,12 +55,12 @@ memory_oe_test:
 		djnz	.loop_next
 
 		xor	a
-		ret
+		PSUB_RETURN
 
 	.test_failed:
 		xor	a
 		inc	a
-		ret
+		PSUB_RETURN
 
 ; a = byte
 oki6295_write_byte:
